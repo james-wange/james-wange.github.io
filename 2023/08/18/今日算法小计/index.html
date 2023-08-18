@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Blog</title>
+<title>今日算法小计-二叉树的最小深度 | Blog</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">今日算法小计-二叉树的最小深度</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">八月 18, 2023&nbsp;&nbsp;0:16:05</a>
+                        Date: <a href="#">八月 18, 2023&nbsp;&nbsp;15:32:22</a>
                         </span>
                     
                     
@@ -214,19 +214,19 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <hr>
+<h3 id="1-今日是leetcode111-二叉树最小深度"><a href="#1-今日是leetcode111-二叉树最小深度" class="headerlink" title="1.今日是leetcode111.二叉树最小深度"></a>1.今日是leetcode111.二叉树最小深度</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/">二叉树最小深度</a></p>
+<p>题目应该是不难的，对应的难度也是简单。</p>
+<ul>
+<li>我的第一想法是找出所有叶子节点加入队列中，在找的过程当中直接求出当前深度。</li>
+<li>最后在队列中找出最小深度。</li>
+<li>但是反过来想，我们要知道深度最大的叶子节点深度吗，这不是有冗余了嘛，我们不需要知道它的深度。</li>
+<li>既然说了是深度最小，我们广度遍历，当第一次遍历到叶子节点时，也就是我们的最小深度，直接返回结果。</li>
+</ul>
+<p>最后贴出我的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        Deque&lt;TreeNode&gt; deque = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        deque.add(root);</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!deque.isEmpty())&#123;</span><br><span class="line">            res++;</span><br><span class="line">            <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> deque.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                <span class="type">TreeNode</span> <span class="variable">treeNode</span> <span class="operator">=</span> deque.removeFirst();</span><br><span class="line">                <span class="keyword">if</span>(treeNode.left == <span class="literal">null</span> &amp;&amp; treeNode.right == <span class="literal">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> res;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(treeNode.left != <span class="literal">null</span>)&#123;</span><br><span class="line">                    deque.add(treeNode.left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(treeNode.right!= <span class="literal">null</span>)&#123;</span><br><span class="line">                    deque.add(treeNode.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>这是我的第一篇文章，写文章的目的就是让自己的想法能够被记录下来，让以后的我看到今天的思想。</p>
 
         </div>
 
@@ -241,7 +241,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/08/18/hello-world/">http://example.com/2023/08/18/hello-world/</a></span>
+                        <span><a href="http://example.com/2023/08/18/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1/">http://example.com/2023/08/18/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1/</a></span>
                     </p>
                 
                 
@@ -264,6 +264,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E7%AE%97%E6%B3%95/"># 算法</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -274,8 +278,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/08/18/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1/">今日算法小计-二叉树的最小深度</a>
             
+            <a class="next" rel="next" href="/2023/08/18/hello-world/">Hello World</a>
             
         </section>
 
