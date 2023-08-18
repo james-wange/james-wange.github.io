@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Wang">
+
+
+
+
+
+<title>一次突发奇想 | Blog</title>
+
+
+
+    <link rel="icon" href="/new.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Wang Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Wang Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">一次突发奇想</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wang</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 18, 2023&nbsp;&nbsp;16:55:25</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <hr>
+<h3 id="一次突发奇想并且上手操练"><a href="#一次突发奇想并且上手操练" class="headerlink" title="一次突发奇想并且上手操练"></a>一次突发奇想并且上手操练</h3><ul>
+<li>看到有个问题 ——– 线程池操作1000w条数据，查询省份为广东的人数为多少，怎么去操作。</li>
+<li>看到这个问题我一开始是懵的，what？？ 1kw条数据，我上哪整这么多数据啊。</li>
+<li>不行，上手操练的好机会，好久没有玩代码了，开整。</li>
+</ul>
+<h5 id="我的第一版代码，使用JDBC向我的数据库插入1000w条数据。"><a href="#我的第一版代码，使用JDBC向我的数据库插入1000w条数据。" class="headerlink" title="我的第一版代码，使用JDBC向我的数据库插入1000w条数据。"></a>我的第一版代码，使用JDBC向我的数据库插入1000w条数据。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">inset2</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] CHINESE_NAMES = &#123;</span><br><span class="line">            <span class="string">&quot;张伟&quot;</span>, <span class="string">&quot;王伟&quot;</span>, <span class="string">&quot;李伟&quot;</span>, <span class="string">&quot;张秀英&quot;</span>, <span class="string">&quot;王秀英&quot;</span>, <span class="string">&quot;李秀英&quot;</span>, <span class="string">&quot;李娜&quot;</span>, <span class="string">&quot;刘伟&quot;</span>, <span class="string">&quot;刘秀英&quot;</span>, <span class="string">&quot;张敏&quot;</span>,</span><br><span class="line">            <span class="string">&quot;李静&quot;</span>, <span class="string">&quot;张丽&quot;</span>, <span class="string">&quot;王丽&quot;</span>, <span class="string">&quot;王静&quot;</span>, <span class="string">&quot;李敏&quot;</span>, <span class="string">&quot;王敏&quot;</span>, <span class="string">&quot;张静&quot;</span>, <span class="string">&quot;李强&quot;</span>, <span class="string">&quot;张勇&quot;</span>, <span class="string">&quot;王强&quot;</span>,</span><br><span class="line">            <span class="string">&quot;李军&quot;</span>, <span class="string">&quot;刘丽&quot;</span>, <span class="string">&quot;李杰&quot;</span>, <span class="string">&quot;张磊&quot;</span>, <span class="string">&quot;王军&quot;</span>, <span class="string">&quot;张涛&quot;</span>, <span class="string">&quot;王勇&quot;</span>, <span class="string">&quot;李明&quot;</span>, <span class="string">&quot;刘强&quot;</span>, <span class="string">&quot;李艳&quot;</span>,</span><br><span class="line">            <span class="string">&quot;张杰&quot;</span>, <span class="string">&quot;王芳&quot;</span>, <span class="string">&quot;李勇&quot;</span>, <span class="string">&quot;张敬&quot;</span>, <span class="string">&quot;王辉&quot;</span>, <span class="string">&quot;王杰&quot;</span>, <span class="string">&quot;李磊&quot;</span>, <span class="string">&quot;李红&quot;</span>, <span class="string">&quot;王明&quot;</span>, <span class="string">&quot;刘杰&quot;</span>,</span><br><span class="line">            <span class="string">&quot;王艳&quot;</span>, <span class="string">&quot;王敬&quot;</span>, <span class="string">&quot;李青&quot;</span>, <span class="string">&quot;刘勇&quot;</span>, <span class="string">&quot;王磊&quot;</span>, <span class="string">&quot;刘杰&quot;</span>, <span class="string">&quot;李辉&quot;</span>, <span class="string">&quot;刘涛&quot;</span>, <span class="string">&quot;王青&quot;</span>, <span class="string">&quot;李斌&quot;</span>,</span><br><span class="line">            <span class="string">&quot;王红&quot;</span>, <span class="string">&quot;刘明&quot;</span>, <span class="string">&quot;王涛&quot;</span>, <span class="string">&quot;张辉&quot;</span>, <span class="string">&quot;王斌&quot;</span>, <span class="string">&quot;李飞&quot;</span>, <span class="string">&quot;王娟&quot;</span>, <span class="string">&quot;刘磊&quot;</span>, <span class="string">&quot;张红&quot;</span>, <span class="string">&quot;刘娟&quot;</span>,</span><br><span class="line">            <span class="string">&quot;李峰&quot;</span>, <span class="string">&quot;王辉&quot;</span>, <span class="string">&quot;刘斌&quot;</span>, <span class="string">&quot;张飞&quot;</span>, <span class="string">&quot;刘红&quot;</span>, <span class="string">&quot;李波&quot;</span>, <span class="string">&quot;王飞&quot;</span>, <span class="string">&quot;李秀兰&quot;</span>, <span class="string">&quot;张娟&quot;</span>, <span class="string">&quot;王峰&quot;</span>,</span><br><span class="line">            <span class="string">&quot;李霞&quot;</span>, <span class="string">&quot;刘飞&quot;</span>, <span class="string">&quot;李玉兰&quot;</span>, <span class="string">&quot;张斌&quot;</span>, <span class="string">&quot;王秀兰&quot;</span>, <span class="string">&quot;李秀荣&quot;</span>, <span class="string">&quot;张梅&quot;</span>, <span class="string">&quot;王霞&quot;</span>, <span class="string">&quot;刘峰&quot;</span>, <span class="string">&quot;张鹏&quot;</span>,</span><br><span class="line">            <span class="string">&quot;王玉兰&quot;</span>, <span class="string">&quot;李婷&quot;</span>, <span class="string">&quot;王梅&quot;</span>, <span class="string">&quot;刘玉兰&quot;</span>, <span class="string">&quot;张军&quot;</span>, <span class="string">&quot;王秀荣&quot;</span>, <span class="string">&quot;刘秀荣&quot;</span>, <span class="string">&quot;李梅&quot;</span>, <span class="string">&quot;张丹&quot;</span>, <span class="string">&quot;王平&quot;</span>,</span><br><span class="line">            <span class="string">&quot;刘霞&quot;</span>, <span class="string">&quot;王晨&quot;</span>, <span class="string">&quot;李萍&quot;</span>, <span class="string">&quot;张平&quot;</span>, <span class="string">&quot;刘梅&quot;</span>, <span class="string">&quot;王丹&quot;</span>, <span class="string">&quot;李鹏&quot;</span>, <span class="string">&quot;刘丹&quot;</span>, <span class="string">&quot;张晨&quot;</span>, <span class="string">&quot;李丹&quot;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] provinces = &#123;</span><br><span class="line">            <span class="string">&quot;北京市&quot;</span>, <span class="string">&quot;天津市&quot;</span>, <span class="string">&quot;河北省&quot;</span>, <span class="string">&quot;山西省&quot;</span>, <span class="string">&quot;内蒙古自治区&quot;</span>,</span><br><span class="line">            <span class="string">&quot;辽宁省&quot;</span>, <span class="string">&quot;吉林省&quot;</span>, <span class="string">&quot;黑龙江省&quot;</span>, <span class="string">&quot;上海市&quot;</span>, <span class="string">&quot;江苏省&quot;</span>,</span><br><span class="line">            <span class="string">&quot;浙江省&quot;</span>, <span class="string">&quot;安徽省&quot;</span>, <span class="string">&quot;福建省&quot;</span>, <span class="string">&quot;江西省&quot;</span>, <span class="string">&quot;山东省&quot;</span>,</span><br><span class="line">            <span class="string">&quot;河南省&quot;</span>, <span class="string">&quot;湖北省&quot;</span>, <span class="string">&quot;湖南省&quot;</span>, <span class="string">&quot;广东省&quot;</span>, <span class="string">&quot;广西壮族自治区&quot;</span>,</span><br><span class="line">            <span class="string">&quot;海南省&quot;</span>, <span class="string">&quot;重庆市&quot;</span>, <span class="string">&quot;四川省&quot;</span>, <span class="string">&quot;贵州省&quot;</span>, <span class="string">&quot;云南省&quot;</span>,</span><br><span class="line">            <span class="string">&quot;西藏自治区&quot;</span>, <span class="string">&quot;陕西省&quot;</span>, <span class="string">&quot;甘肃省&quot;</span>, <span class="string">&quot;青海省&quot;</span>, <span class="string">&quot;宁夏回族自治区&quot;</span>,</span><br><span class="line">            <span class="string">&quot;新疆维吾尔自治区&quot;</span>, <span class="string">&quot;台湾省&quot;</span>, <span class="string">&quot;香港特别行政区&quot;</span>, <span class="string">&quot;澳门特别行政区&quot;</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/class?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 加载MySQL的JDBC驱动</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 建立数据库连接</span></span><br><span class="line">            connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">            <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">            <span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10000</span> * <span class="number">1000</span>; i++) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;INSERT INTO user (number, name, city) VALUES (?, ?, ?)&quot;</span>;</span><br><span class="line">                preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">                <span class="comment">// 绑定参数值</span></span><br><span class="line">                preparedStatement.setString(<span class="number">3</span>, provinces[random.nextInt(provinces.length)]);</span><br><span class="line">                preparedStatement.setString(<span class="number">2</span>, CHINESE_NAMES[random.nextInt(CHINESE_NAMES.length)]);</span><br><span class="line">                preparedStatement.setInt(<span class="number">1</span>, random.nextInt(<span class="number">40</span>) + <span class="number">60</span>);</span><br><span class="line">                <span class="type">int</span> <span class="variable">rowsAffected</span> <span class="operator">=</span> preparedStatement.executeUpdate();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 关闭PreparedStatement</span></span><br><span class="line">            preparedStatement.close();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 关闭数据库连接</span></span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是太太太慢了，运行了很久，才生成了</p>
+<p><img src="/../images/image-20230818194600508.png" alt="image-20230818194600508"></p>
+<p>时间都去了，数据才这么点，不行，要继续进行改造。</p>
+<h5 id="这是我的第二版代码，运行速度嘎嘎的，比原来快多了，当然，我是用的是Mybatis插入。"><a href="#这是我的第二版代码，运行速度嘎嘎的，比原来快多了，当然，我是用的是Mybatis插入。" class="headerlink" title="这是我的第二版代码，运行速度嘎嘎的，比原来快多了，当然，我是用的是Mybatis插入。"></a>这是我的第二版代码，运行速度嘎嘎的，比原来快多了，当然，我是用的是Mybatis插入。</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public void save() throws InterruptedException &#123;</span><br><span class="line">        CountDownLatch countDownLatch = new CountDownLatch(60);</span><br><span class="line">        Random random = new Random();</span><br><span class="line">        for (int i = 0; i &lt; 60; i++) &#123;</span><br><span class="line">            myThreadPoolTaskExecutor.execute(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 10000 * 10; j++) &#123;</span><br><span class="line">                        User_1 users = new User_1(random.nextInt(60) + 40,</span><br><span class="line">                                CHINESE_NAMES[random.nextInt(CHINESE_NAMES.length)],</span><br><span class="line">                                provinces[random.nextInt(provinces.length)]);</span><br><span class="line">                        userMapper.save(users);</span><br><span class="line">                    &#125;</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20230818194639116.png" alt="image-20230818194639116"></p>
+<p>当然，费时还是不少的，最后实在是不想等了，直接根据我的需求开搞。</p>
+<h5 id="最后结论"><a href="#最后结论" class="headerlink" title="最后结论"></a>最后结论</h5><p>首先呢，我不使用线程池去搜索数据，而是直接全表扫描，看看用时多少。</p>
+<p><img src="/../images/image-20230818194659188.png" alt="image-20230818194659188"></p>
+<ul>
+<li>好了，看我的线程池登场，但是在线程池登场前，我们必须思考用什么sql查询语句。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT city FROM `user` LIMIT 0 , 10000</span><br><span class="line">SELECT city FROM `user` WHERE id &gt;= 6200000 LIMIT 10000</span><br></pre></td></tr></table></figure>
+
+<p>我选择用第二种，为什么呢？</p>
+<ol>
+<li>此表上我只建立了主键索引，也就是id主键，第一条语句并没有使用到索引，当0越来越大的时候，用时也就越来越长。什么，你跟我讲不信？？？好，我接下俩让你们看一看。</li>
+</ol>
+<p><img src="/../images/image-20230818194745735.png" alt="image-20230818194745735"></p>
+<p>加速是显而易见的，好了，接下来我的线程池就要登场了，其实我并不知道使用线程池的最后结果是否正确。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">query_3</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">CountDownLatch</span> <span class="variable">countDownLatch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(<span class="number">7</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">1000000</span>;</span><br><span class="line">        <span class="type">AtomicInteger</span> <span class="variable">atomicInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">7</span>; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">cur</span> <span class="operator">=</span> i;</span><br><span class="line">            myThreadPoolTaskExecutor.execute(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                    List&lt;User_1&gt; list = userMapper.query_3(cur * start);</span><br><span class="line">                    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> (<span class="type">int</span>) list.stream().filter(user1 -&gt; user1.getCity().equals(<span class="string">&quot;广东省&quot;</span>)).count();</span><br><span class="line">                    System.out.println(count);</span><br><span class="line">                    atomicInteger.compareAndSet(atomicInteger.get(), atomicInteger.get() + count);</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        System.out.println(atomicInteger.get());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20230818194817742.png" alt="image-20230818194817742"></p>
+<p><img src="/../images/image-20230818194841589.png" alt="image-20230818194841589"></p>
+<p><strong>毫无疑问，速度增加了不少，好了改造完成，这是我的第二篇文章，实话说排版可能很乱，但是在这个过程中收获了不少</strong></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wang</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2023/08/18/%E4%B8%80%E6%AC%A1%E7%AA%81%E5%8F%91%E5%A5%87%E6%83%B3/">http://example.com/2023/08/18/%E4%B8%80%E6%AC%A1%E7%AA%81%E5%8F%91%E5%A5%87%E6%83%B3/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Demo/"># Demo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/08/18/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1/">今日算法小计-二叉树的最小深度</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
