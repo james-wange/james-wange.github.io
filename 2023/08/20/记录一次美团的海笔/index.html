@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Wang">
+
+
+
+
+
+<title>记录一次美团的海笔 | Blog</title>
+
+
+
+    <link rel="icon" href="/new.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Wang Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Wang Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">记录一次美团的海笔</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wang</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 20, 2023&nbsp;&nbsp;15:47:54</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <hr>
+<h2 id="这是美团第二次的笔试，是我参加的第一次，卡在了第三题许久，最后也没有做出来。"><a href="#这是美团第二次的笔试，是我参加的第一次，卡在了第三题许久，最后也没有做出来。" class="headerlink" title="这是美团第二次的笔试，是我参加的第一次，卡在了第三题许久，最后也没有做出来。"></a>这是美团第二次的笔试，是我参加的第一次，卡在了第三题许久，最后也没有做出来。</h2><p><strong>让我们看一看题目描述</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">小美定义一个 01 串的权值为：每次操作选择一位取反，使得相邻字符都不相等的最小操作次数。</span><br><span class="line">例如，&quot;10001&quot;的权值是 1，因为只需要修改一次：对第三个字符取反即可。</span><br><span class="line">现在小美拿到了一个 01 串，她希望你求出所有非空连续子串的权值之和，你能帮帮她吗？</span><br><span class="line">输入描述</span><br><span class="line">一个仅包含&#x27;0&#x27;和&#x27;1&#x27;的字符串，长度不超过 2000。</span><br><span class="line">输出描述</span><br><span class="line">所有非空子串的权值和。</span><br><span class="line"></span><br><span class="line">示例1</span><br><span class="line"></span><br><span class="line">输入</span><br><span class="line">10001</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line">8</span><br><span class="line"></span><br><span class="line">说明</span><br><span class="line">长度为 2 的子串中，有 2 个&quot;00&quot;的权值是 1。</span><br><span class="line">长度为 3 的 3 个子串权值都是 1。</span><br><span class="line">长度为 4 的 2 个子串权值都是 1。</span><br><span class="line">长度为 5 的 1 个子串权值是 1。</span><br><span class="line">总权值之和为 2+3+2+1=8</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>这题首先就思考了许久，最后还是被欺骗了，我的想法是首先贪心找出让相邻字符串不相等的索引，然后算出此索引影响的地方。</li>
+<li>在此用例确实是能过，按我的方法，拿到的索引为2 ，最后影响的个数为 2 + 2 +2 * 2。与答案一样。</li>
+<li>但是我完全想错了，我是从宏观上面使相邻字符串都不想等的最小操作次数。题目要求的是什么，要求求出子串。</li>
+</ul>
+<p>好了，相邻不相等的子串，我们枚举，无非是10101010、0101010101。</p>
+<p>求出我们输入的字符串变为101010修改的次数，变为010101修改的次数。最后枚举每个子串变为101010或者010101修改的最小值。</p>
+<ul>
+<li>可以说这道题目我先入为主了，并且一直没有变换思维，一直想着全局最优，完全不用管全局，只用想着局部就行。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> scanner.nextLine();</span><br><span class="line">        <span class="type">char</span>[] charArray = s.toCharArray();</span><br><span class="line">        <span class="type">char</span>[] chars1 = <span class="keyword">new</span> <span class="title class_">char</span>[charArray.length];</span><br><span class="line">        <span class="type">char</span>[] chars2 = <span class="keyword">new</span> <span class="title class_">char</span>[charArray.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; charArray.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                chars1[i] = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">                chars2[i] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                chars1[i] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                chars2[i] = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span>[] dp2 = <span class="keyword">new</span> <span class="title class_">int</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            dp[i + <span class="number">1</span>] = dp[i];</span><br><span class="line">            dp2[i + <span class="number">1</span>] = dp2[i];</span><br><span class="line">            <span class="keyword">if</span> (charArray[i] != chars1[i]) &#123;</span><br><span class="line">                dp[i + <span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (charArray[i] != chars2[i]) &#123;</span><br><span class="line">                dp2[i + <span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(dp));</span><br><span class="line">        System.out.println(Arrays.toString(dp2));</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res1</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res2</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">                res += dp[j + <span class="number">1</span>] - dp[i];</span><br><span class="line">                res1  += dp2[j + <span class="number">1</span>] - dp2[i];</span><br><span class="line">                res2 += Math.min(dp[j + <span class="number">1</span>] - dp[i],dp2[j + <span class="number">1</span>] - dp2[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">        System.out.println(res1);</span><br><span class="line">        System.out.println(res2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>看到我的res 、res1 、res2了吗，对应的就是我们的字符子串全变成101010、010101、(101010,010101)中的最小值。</li>
+<li>我的先入为主就是res ，res1 其中的值了。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wang</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2023/08/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E7%BE%8E%E5%9B%A2%E7%9A%84%E6%B5%B7%E7%AC%94/">http://example.com/2023/08/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E7%BE%8E%E5%9B%A2%E7%9A%84%E6%B5%B7%E7%AC%94/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AF%95/"># 笔试</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/08/18/%E5%AD%A6%E4%B9%A0Dijkstra%E7%AE%97%E6%B3%95/">学习Dijkstra算法</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
