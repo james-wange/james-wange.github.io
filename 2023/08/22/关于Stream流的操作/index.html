@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Wang">
+
+
+
+
+
+<title>关于Stream流的操作 | Blog</title>
+
+
+
+    <link rel="icon" href="/new.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Wang Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Wang Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">关于Stream流的操作</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wang</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 22, 2023&nbsp;&nbsp;15:42:05</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <hr>
+<h3 id="关于Stream流的操作"><a href="#关于Stream流的操作" class="headerlink" title="关于Stream流的操作"></a>关于Stream流的操作</h3><p>其实网上关于Stream流的操作还是挺全的，但是我想这是一次非常好的实践，其代码确实简洁。</p>
+<p>首先，我定义一个实体类Employee。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Employee</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String subCompany;</span><br><span class="line">    <span class="keyword">private</span> String department;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码如果你接下来想去操作的话，记得去完成它的get ， set ， hashcode ， equals ，toString 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] SURNAMES = &#123;<span class="string">&quot;张&quot;</span>, <span class="string">&quot;王&quot;</span>, <span class="string">&quot;李&quot;</span>, <span class="string">&quot;赵&quot;</span>, <span class="string">&quot;陈&quot;</span>, <span class="string">&quot;刘&quot;</span>, <span class="string">&quot;杨&quot;</span>, <span class="string">&quot;黄&quot;</span>, <span class="string">&quot;霍&quot;</span>, <span class="string">&quot;柯&quot;</span>, <span class="string">&quot;路&quot;</span>, <span class="string">&quot;徐&quot;</span>, <span class="string">&quot;邓&quot;</span>&#125;;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] NAMES = &#123;<span class="string">&quot;明&quot;</span>, <span class="string">&quot;红&quot;</span>, <span class="string">&quot;伟&quot;</span>, <span class="string">&quot;芳&quot;</span>, <span class="string">&quot;建国&quot;</span>, <span class="string">&quot;丽&quot;</span>, <span class="string">&quot;强&quot;</span>, <span class="string">&quot;秀英&quot;</span>, <span class="string">&quot;一&quot;</span>, <span class="string">&quot;二&quot;</span>, <span class="string">&quot;三&quot;</span>, <span class="string">&quot;四&quot;</span>, <span class="string">&quot;无&quot;</span>, <span class="string">&quot;五&quot;</span>, <span class="string">&quot;六&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] CONPANY = &#123;<span class="string">&quot;上海公司&quot;</span>, <span class="string">&quot;南京公司&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] DEPARTMENT = &#123;<span class="string">&quot;研发一部&quot;</span>, <span class="string">&quot;研发二部&quot;</span>, <span class="string">&quot;测试一部&quot;</span>, <span class="string">&quot;测试二部&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">generateRandomName</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">String</span> <span class="variable">surname</span> <span class="operator">=</span> SURNAMES[random.nextInt(SURNAMES.length)];</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> NAMES[random.nextInt(NAMES.length)];</span><br><span class="line">    <span class="keyword">return</span> surname + name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">generateRandomComapny</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> random.nextInt(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> CONPANY[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">generateRandomDepartment</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> random.nextInt(DEPARTMENT.length);</span><br><span class="line">    <span class="keyword">return</span> DEPARTMENT[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">序列化，随机生成的Employee列表</span></span><br><span class="line"><span class="comment">只进行一次操作</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">random</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Employee</span> <span class="variable">employee</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;大壮&quot;</span>, <span class="string">&quot;上海公司&quot;</span>, <span class="string">&quot;研发一部&quot;</span>, <span class="number">28</span>, <span class="number">3000</span>);</span><br><span class="line">    List&lt;Employee&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">Employee</span>(generateRandomName(), generateRandomComapny(), generateRandomDepartment(), <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10</span>) + <span class="number">20</span>, <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">6000</span>) + <span class="number">7000</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">ObjectOutputStream</span> <span class="variable">objectOutputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;F:\\Data structure\\src\\main\\java\\Stream\\random.txt&quot;</span>));</span><br><span class="line">    objectOutputStream.writeObject(list);</span><br><span class="line">    objectOutputStream.flush();</span><br><span class="line">    objectOutputStream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> * 读取List&lt;Employee&gt;</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Employee&gt; <span class="title function_">read</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Employee&gt; list = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;F:\\Data structure\\src\\main\\java\\Stream\\random.txt&quot;</span>));</span><br><span class="line">        list = (List&lt;Employee&gt;) objectInputStream.readObject();</span><br><span class="line">        objectInputStream.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码的操作我已经在方法上面作了说明，相信大家都能看懂，我随机生成了10000条数据，都是Employee的数据。</p>
+<p>下面是我们关于这篇文章需要重点去关注的，就是关于Stream的操作，这篇文章适合会一点流式操作的人看。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 现在我需要知道全公司工资最高的人是谁，怎么使用流去快速操作。</span></span><br><span class="line">List&lt;Employee&gt; list = read();</span><br><span class="line">Optional&lt;Employee&gt; max = list.stream().max(Comparator.comparingInt(Employee::getSalary));</span><br><span class="line">System.out.println(max.get());</span><br><span class="line"><span class="comment">// Employee&#123;name=&#x27;刘秀英&#x27;, subCompany=&#x27;上海公司&#x27;, department=&#x27;研发一部&#x27;, age=26, salary=12999&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的操作相信还是很简单的，大家一看就懂，那么我们需要知道分公司的最高公司各是谁呢？</span></span><br><span class="line"><span class="comment">//普通操作就是遍历list并且创建一个map，向map丢员工，最后再排序。</span></span><br><span class="line"><span class="comment">//接下来大家看看流式操作的骚操作。</span></span><br><span class="line">Map&lt;String, Optional&lt;Employee&gt;&gt; collect1 = list.stream().collect(Collectors.groupingBy(Employee::getSubCompany, Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (String s : collect1.keySet()) &#123;</span><br><span class="line">    System.out.println(s + <span class="string">&quot;     &quot;</span> + collect1.get(s).get());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//南京公司     Employee&#123;name=&#x27;徐五&#x27;, subCompany=&#x27;南京公司&#x27;, department=&#x27;研发二部&#x27;, age=20, salary=12997&#125;</span></span><br><span class="line"><span class="comment">//上海公司     Employee&#123;name=&#x27;刘秀英&#x27;, subCompany=&#x27;上海公司&#x27;, department=&#x27;研发一部&#x27;, age=26, salary=12999&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们现在需要知道各个分公司下的各个部门有多少人数，这个操作对于数据库下操作其实不难，但是有那么一丢丢复杂。其实对于stream也有那么一丢丢复杂，但是操作非常清晰明了。</span></span><br><span class="line"></span><br><span class="line">Map&lt;String, Map&lt;String, Long&gt;&gt; collect2 = list.stream().collect(Collectors.groupingBy(Employee::getSubCompany, Collectors.groupingBy(Employee::getDepartment, Collectors.counting())));</span><br><span class="line"><span class="keyword">for</span> (String s : collect2.keySet()) &#123;</span><br><span class="line">    System.out.println(s + <span class="string">&quot;   &quot;</span> + collect2.get(s));</span><br><span class="line">&#125;</span><br><span class="line">南京公司   &#123;测试二部=<span class="number">1268</span>, 研发二部=<span class="number">1237</span>, 测试一部=<span class="number">1256</span>, 研发一部=<span class="number">1221</span>&#125;</span><br><span class="line">上海公司   &#123;测试二部=<span class="number">1263</span>, 研发二部=<span class="number">1263</span>, 测试一部=<span class="number">1255</span>, 研发一部=<span class="number">1237</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wang</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2023/08/22/%E5%85%B3%E4%BA%8EStream%E6%B5%81%E7%9A%84%E6%93%8D%E4%BD%9C/">http://example.com/2023/08/22/%E5%85%B3%E4%BA%8EStream%E6%B5%81%E7%9A%84%E6%93%8D%E4%BD%9C/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Demo/"># Demo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/08/21/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B00-100/">如何优雅的线程交替打印0 - 100</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wang | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
