@@ -13,7 +13,7 @@
 
 
 
-<title>今日算法小计(2) | Blog</title>
+<title>今日算法小计-3 | Blog</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">今日算法小计(2)</h1>
+            <h1 class="post-title">今日算法小计-3</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">八月 22, 2023&nbsp;&nbsp;19:07:32</a>
+                        Date: <a href="#">八月 23, 2023&nbsp;&nbsp;22:11:11</a>
                         </span>
                     
                     
@@ -216,25 +216,20 @@
         <div class="post-content">
             <hr>
 <hr>
-<h3 id="今天的题目是到最近的人的最大距离"><a href="#今天的题目是到最近的人的最大距离" class="headerlink" title="今天的题目是到最近的人的最大距离"></a>今天的题目是到最近的人的最大距离</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximize-distance-to-closest-person/description/">到最近的人的最大距离</a></p>
-<p>来看看题目描述 :</p>
+<hr>
 <ul>
-<li><p>给你一个数组 <code>seats</code> 表示一排座位，其中 <code>seats[i] = 1</code> 代表有人坐在第 <code>i</code> 个座位上，<code>seats[i] = 0</code> 代表座位 <code>i</code> 上是空的（<strong>下标从 0 开始</strong>）。</p>
-</li>
-<li><p>至少有一个空座位，且至少有一人已经坐在座位上。</p>
-</li>
-<li><p>下图对应的数组是[1,0,0,0,1,0,1]</p>
-<p><img src="/../images/image-20230822191950123.png" alt="image-20230822191950123"></p>
-</li>
+<li>其实写博客的目的是分享我的日常，但是一直都是写一些Demo和算法之类的东西，首先声明，我写算法不是我多强，我是菜鸡。</li>
+<li>今日也是八月二十三日了，暑期生活基本也已经结束，要说这段日子最大的收获是什么，可能会云云增强了coding能力啊，什么什么的，但是于我来说这是我从大三下学期最后一段时间到现在一直为之努力的。暑期生活有了一些不同，至少有了一些不同点。</li>
+<li>我开着我舅的五菱宏光在马路上嘎嘎飞啊，还记得从暑期生活开始的时候上车的胆颤，现在的心态完全不同了，就是稳。其实手动挡上手是很不友好的，动不动就开的熄火，特别是起步阶段，又慢，后面的老司机那个喇叭叫一个响，the more you flustered , the more you slow。当然，现在完全不会有车子熄火的状态了，看有一些人说开手动挡脚会非常酸，我完全没有这个感觉，倒是很享受这个过程，可能这和我平常锻炼有一点点关系吧，自恋一波。</li>
+<li>暑期过程也是伴随的一丝焦虑的，毕竟毕业压力也来临了，平常也会投各种公司的简历，大多数都是无音信。</li>
+<li>其实也无数次问过自己，自己到底要不要继续走下去，我想：都已经走到这来了，至少也要把这条路走完吧。我不能改变环境，我能改变的只有自己，自己的心态。</li>
+<li>我开车的时候，突然想到一句话很适用这个场景：不要总是低头做事，还要抬头看路。</li>
 </ul>
-<p>其实观察一下就可以知道0 ，4 之间到最近的人的最大距离为  (4 - 0) &#x2F; 2 ，向下取整 ， 假如人在0 , 3的位置上，我们的公式一样适用。</p>
-<p>好了，我们的基本框架基本完成，但是有几种特殊情况我们需要注意，[0,0,0,1],[1,0,0,0],[0,0,0,1,1]的情况下我们找不到两个位置做人的情况或者是有这种情况但是不适用我们的通解。</p>
-<p>那么问题就来了，如何去解决这种情况呢？我们可以在头上放一个 -1，当前面那个人是-1 时 ，表示当前索引的前面位置我们都可以去取到，结尾也放上一个-1 ， 表示前面索引的位置之后的空位置我们都可以取到。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDistToClosest</span><span class="params">(<span class="type">int</span>[] seats)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    stack.push(-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; seats.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (seats[i] == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">pop</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (pop == -<span class="number">1</span>) &#123;</span><br><span class="line">                res = Math.max(res, i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                res = Math.max((i - pop) / <span class="number">2</span>, res);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">pop</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">    res = Math.max(seats.length - <span class="number">1</span> - pop ,res);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>提交上之后表示正确。但是最后的百分比让我吓一跳。</p>
-<p><img src="/../images/image-20230822192957700.png" alt="image-20230822192957700"></p>
-<p>难道还有更加优秀的解法吗？人麻了，但是翻开别人的解法一看，思路和我的一样，别人用了两个变量pre记录前面的值 , index记录了前面的索引，和我的大差不差。</p>
+<p>可能有一些人看到这觉得是不是今天的内容与title偏离了，当然不是啦，上面的内容是我埋的彩蛋，虽然博客的内容浏览量趋近于0，但是我完全相信在未来的某一天会有人看到我的内容。</p>
+<h3 id="两两交换链表中的节点"><a href="#两两交换链表中的节点" class="headerlink" title="两两交换链表中的节点"></a>两两交换链表中的节点</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/">两两交换链表中的节点</a></p>
+<p>本道题的描述还是非常清洗明了的，直接点说就是交换 0 ，1 节点 ， 交换 2， 3 节点 ， 因此类推。</p>
+<p>鉴于不是很难，我直接放代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">root</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">first</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> first;</span><br><span class="line">        <span class="keyword">while</span> (root != <span class="literal">null</span> &amp;&amp; root.next != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> root.next.next;</span><br><span class="line">            pre.next = root.next;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">            pre.next = root;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">            root = next;</span><br><span class="line">        &#125;</span><br><span class="line">        pre.next = root;</span><br><span class="line">        <span class="keyword">return</span> first.next;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -249,7 +244,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/08/22/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-2/">http://example.com/2023/08/22/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-2/</a></span>
+                        <span><a href="http://example.com/2023/08/23/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-3/">http://example.com/2023/08/23/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-3/</a></span>
                     </p>
                 
                 
@@ -286,10 +281,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/08/23/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-3/">今日算法小计-3</a>
             
-            
-            <a class="next" rel="next" href="/2023/08/22/%E5%85%B3%E4%BA%8EStream%E6%B5%81%E7%9A%84%E6%93%8D%E4%BD%9C/">关于Stream流的操作</a>
+            <a class="next" rel="next" href="/2023/08/22/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%A1-2/">今日算法小计(2)</a>
             
         </section>
 
