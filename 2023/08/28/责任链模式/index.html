@@ -215,15 +215,13 @@
 
         <div class="post-content">
             <hr>
-<hr>
-<hr>
 <h3 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h3><ol>
 <li>今天我们来讲一讲责任链模式，如何去理解责任链模式呢？</li>
 <li>其实SpringMvc拦截器设计就是责任链模式，当有一个拦截器顺利拦截之后，任务就中止。</li>
 <li>举一个例子：多个处理器依次处理同一个请求，一个请求先经过A处理器处理，再把请求传给B处理器处理，再把请求传给C处理器处理。链条上的每个处理器各自承担各自的处理职责。</li>
 <li>当然，并不是不符合当前的处理器的职责就中止，也可以继续处理，经过链条上的所有处理器。</li>
 </ol>
-<p>相信经过上面的讲解，相信大家对责任链模式有了一个大概的了解，下面我们将会看到责任链模式的使用。我用的是经过链条上的所有处理器。</p>
+<p>相信经过上面的讲解，相信大家对责任链模式有了一个大概的了解，下面我们将会看到责任链模式的使用。我用的是经过链条上的处理器，自己执行完之后就可以中止了。</p>
 <ul>
 <li>定义一个顶级类，是所有处理器的父接口。</li>
 </ul>
@@ -248,7 +246,7 @@
 <p>好了，我们所有的准备工作都已经完成了，我们可以去真正的开始我们的责任链了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Handler</span> <span class="variable">handlerA</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteHandlerA</span>();</span><br><span class="line">        <span class="type">Handler</span> <span class="variable">handlerB</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteHandlerB</span>();</span><br><span class="line">        <span class="type">Handler</span> <span class="variable">handlerC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteHandlerC</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        handlerA.setSuccessor(handlerB);</span><br><span class="line">        handlerB.setSuccessor(handlerC);</span><br><span class="line">        <span class="comment">// 创建请求并发送给第一个处理者</span></span><br><span class="line">        <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        handlerA.handleRequest(request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这个责任链非常清晰，执行完A之后再执行B，执行完B之后再去执行C。</p>
+<p>这个责任链非常清晰，执行完A之后再执行B，执行完B之后再去执行C，中途执行了之后就可以中止了。</p>
 <p>来看看最后的执行结果。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是B</span><br></pre></td></tr></table></figure>
 
